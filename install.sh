@@ -131,7 +131,8 @@ apt-get install --yes \
     xorg-sgml-doctools \
     libjpeg8 \
     xtrans-dev \
-    zlib1g-dev
+    zlib1g-dev \
+    ffmpeg
 
 echo "## Installing and configuring nginx and the FOS-Streaming panel"
 #**************if you already have nginx remove it from this line**************#
