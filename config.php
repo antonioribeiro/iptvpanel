@@ -4,7 +4,7 @@ include('_start.php');
 
 $databasemanagar->addConnection([
     'driver'    => 'mysql',
-    'host'      => 'localhost',
+    'host'      => getenv('DB_HOST') ?: 'localhost',
     'database'  => getenv('DB_NAME'),
     'username'  => getenv('DB_USER'),
     'password'  => getenv('DB_PASSWORD'),
@@ -12,5 +12,7 @@ $databasemanagar->addConnection([
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
 ]);
+
 $debug = false;
+
 include('_load.php');
