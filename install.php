@@ -40,8 +40,8 @@ if( isset($_GET['install'])) {
         });
 
         $admin = new Admin;
-        $admin->username = 'admin';
-        $admin->password = md5('admin');
+        $admin->username = getenv('ADMIN_USERNAME');
+        $admin->password = md5(getenv('ADMIN_PASSWORD'));
         $admin->save();
 
         echo "created admin table <br>" . PHP_EOL;
