@@ -18,6 +18,10 @@ $views = __DIR__ . '/views';
 $cache = __DIR__ . '/cache';
 $template = new Blade($views, $cache);
 
+if (!file_exists($cache)) {
+    mkdir($cache);
+}
+
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
