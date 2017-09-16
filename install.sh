@@ -154,8 +154,8 @@ wget https://getcomposer.org/installer -O /usr/src/installer
 /usr/bin/php /usr/src/installer
 mv composer.phar /usr/local/bin/composer
 composer install -d /usr/local/nginx/html/
-echo 'www-data ALL = (root) NOPASSWD: /usr/local/bin/ffmpeg' >> /etc/sudoers
-echo 'www-data ALL = (root) NOPASSWD: /usr/local/bin/ffprobe' >> /etc/sudoers	
+echo 'www-data ALL = (root) NOPASSWD: /usr/bin/ffmpeg' >> /etc/sudoers
+echo 'www-data ALL = (root) NOPASSWD: /usr/bin/ffprobe' >> /etc/sudoers
 sed --in-place '/exit 0/d' /etc/rc.local
 echo "sleep 10" >> /etc/rc.local
 echo "/usr/local/nginx/sbin/nginx" >> /etc/rc.local
@@ -172,17 +172,6 @@ update-rc.d nginx defaults
 
 ### database import
 echo "done"
-echo "Downloading and configuring ffmpeg 64bit"
-cd /usr/src/
-wget http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz
-tar -xJf ffmpeg-release-64bit-static.tar.xz
-cd ffmpeg*/
-cp ffmpeg /usr/local/bin/ffmpeg
-cp ffprobe /usr/local/bin/ffprobe
-chmod 755 /usr/local/bin/ffmpeg
-chmod 755 /usr/local/bin/ffprobe
-cd /usr/src/
-rm -r /usr/src/ffmpeg*
 echo "installation finshed."
 echo "go to http://host/phpmyadmin and upload the database.sql file which is located in /usr/local/nginx/html/"
 echo "configure /usr/local/nginx/html/config.php"
