@@ -169,6 +169,7 @@ chown www-data:www-data /usr/local/nginx/conf
 wget https://raw.github.com/JasonGiedymin/nginx-init-ubuntu/master/nginx -O /etc/init.d/nginx
 chmod +x /etc/init.d/nginx
 update-rc.d nginx defaults
+mkdir /var/log/nginx
 
 ### database import
 echo "done"

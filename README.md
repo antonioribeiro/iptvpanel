@@ -18,43 +18,41 @@
 - predefined transcode profiles
 
 
-### Installation options:
-### Option 1: Fresh installation
-- 1. wget http://fos-streaming.com/fresh_install.sh
-- 2. chmod 755 fresh_install.sh
-- 3. ./fresh_install.sh
+### Install software
+- wget https://raw.githubusercontent.com/antonioribeiro/iptvpanel/master/install.sh
+- sudo bash install.sh
 
-### Option 2: Old FOS-Streaming to (NEW) FOS-Streaming V
-- 1. wget http://fos-streaming.com/old2new_install.sh
-- 2. chmod 755 old2new_install.sh
-- 3. ./old2new_install.sh
-- 4. remove /usr/local/nginx/sbin/nginx in /etc/rc.local
-
-- If someone have problem after reboot that old panel starts, then use this command: rm -r /etc/init.d/nginx
-
-### Change port of panel
-- 1. change port in webinterface -> Settings -> web Port
-- 2. change port in /home/fos-streaming/fos/nginx/conf/nginx.conf -> listen 8000;
-- 3. killall -9 nginx_fos
-- 4. /home/fos-streaming/fos/nginx/sbin/nginx_fos
+### Install database
+- mysql -u root -p
+- create database fos_streaming;
+- quit;
+- cp /usr/src/iptvpanel/.env.example /usr/local/nginx/html/.env
+- vi /usr/local/nginx/html/.env ### and configure your data:
+- # define all variables
+    - DB_NAME="fos_streaming"
+    - DB_USER="root"
+    - DB_PASSWORD="<root-password>"
+    - ADMIN_USERNAME="admin"
+    - ADMIN_PASSWORD="<your-password>"
+- # open a browser tab with http://ip-of-your-server:8000/install.php?install=fresh
 
 ### How can I use it?
-- Default login:
-- username: admin
-- password: admin
-- 1. Add categorie
-- 2. Add user
-- 3. Add stream and use defined transcode profile 1 called default 1
+- open a browser tab with http://ip-of-your-server:8000
+- username: <.env ADMIN_USERNAME>
+- password: <.env ADMIN_PASSWORD>
+- Add category
+- Add user
+- Add stream and use defined transcode profile 1 called default 1
 - You can use it also in proxy mode, but that depends on how you want to use it.
 - The most stable way is using transcode profile: default 1 without proxy mode ticket
 
 ### 4. Open stream on user side
 
 ### Updater
-- 1. wget http://fos-streaming.com/update_fos.sh
-- 2. chmod 755 update_fos.sh
-- 3. ./update_fos.sh
+- Login via SSH on your server
+- sudo bash /usr/src/iptvpanel/update.sh
 
+#### Bugs
 - Are there bugs?
 - You can report it here or on official website
 
@@ -65,16 +63,15 @@
 - Problems with database?
 - dpkg-reconfigure mysql-server-5.5# FOS-Streaming
 
-
 #### Commercial rights
-------------
+------------------------------------
 - You may charge for installation, support and modification.
 - You may Any significant modifications must be sent back to the author (me), under Open Source agreement.
 - You may not Rename the plugin.
 - You may not sell this plugin to anyone.
 
 #### Contribution
-------------
+------------------------------------
 Contribution are always **welcome and recommended**! Here is how:
 
 - Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
@@ -88,12 +85,3 @@ Contribution are always **welcome and recommended**! Here is how:
 - If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
 - Contributions are only accepted through Github pull requests.
 
-#### License
--------
-Fos-Streamining is an open source project by [Tyfix](https://tyfix.nl that is licensed under [MIT](http://opensource.org/licenses/MIT). Tyfix
-reserves the right to change the license of future releases.
-
-
-Donations are **greatly appreciated!**
-
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "Tyfix ")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6ATJFKYPFY65W "Donate")
