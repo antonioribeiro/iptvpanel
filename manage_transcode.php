@@ -13,26 +13,26 @@ if(isset($_GET['id'])) {
 }
 
 if (isset($_POST['submit'])) {
-    $trans->name = $_POST['profilename'];
-    $trans->probesize = $_POST['probesize'];
-    $trans->analyzeduration = $_POST['analyzeduration'];
-    $trans->video_codec = $_POST['video_codec'];
-    $trans->audio_codec = $_POST['audio_codec'];
-    $trans->profile = $_POST['profile'];
-    $trans->preset_values = $_POST['preset_values'];
-    $trans->bufsize = $_POST['bufsize'];
-    $trans->scale = $_POST['scalling'];
-    $trans->aspect_ratio = $_POST['aspect_ratio'];
-    $trans->video_bitrate = $_POST['video_bitrate'];
-    $trans->audio_channel = $_POST['audio_channel'];
-    $trans->audio_bitrate = $_POST['audio_bitrate'];
-    $trans->fps = $_POST['fps'];
-    $trans->minrate = $_POST['minrate'];
-    $trans->maxrate = $_POST['maxrate'];
-    $trans->bufsize = $_POST['bufsize'];
-    $trans->audio_sampling_rate = $_POST['audio_sampling_rate'];
-    $trans->crf = $_POST['crf'];
-    $trans->threads = $_POST['threads'];
+    $trans->name = $_POST['profilename'] ?: null;
+    $trans->probesize = $_POST['probesize'] ?: null;
+    $trans->analyzeduration = $_POST['analyzeduration'] ?: null;
+    $trans->video_codec = $_POST['video_codec'] ?: null;
+    $trans->audio_codec = $_POST['audio_codec'] ?: null;
+    $trans->profile = $_POST['profile'] ?: null;
+    $trans->preset_values = $_POST['preset_values'] ?: null;
+    $trans->bufsize = $_POST['bufsize'] ?: null;
+    $trans->scale = $_POST['scalling'] ?: null;
+    $trans->aspect_ratio = $_POST['aspect_ratio'] ?: null;
+    $trans->video_bitrate = $_POST['video_bitrate'] ?: null;
+    $trans->audio_channel = $_POST['audio_channel'] ?: null;
+    $trans->audio_bitrate = $_POST['audio_bitrate'] ?: null;
+    $trans->fps = $_POST['fps'] ?: null;
+    $trans->minrate = $_POST['minrate'] ?: null;
+    $trans->maxrate = $_POST['maxrate'] ?: null;
+    $trans->bufsize = $_POST['bufsize'] ?: null;
+    $trans->audio_sampling_rate = $_POST['audio_sampling_rate'] ?: null;
+    $trans->crf = $_POST['crf'] ?: null;
+    $trans->threads = $_POST['threads'] ?: null;
 
     $trans->deinterlance = 0;
     if (isset($_POST['deinterlance'])) {
