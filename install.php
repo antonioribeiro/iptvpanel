@@ -66,8 +66,8 @@ if( isset($_GET['install'])) {
 
         $db->schema()->create('category_user', function ($table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('category_id');
+            $table->integer('user_id')->nullable();
+            $table->integer('category_id')->nullable();
             $table->timestamps();
         });
 
@@ -83,7 +83,7 @@ if( isset($_GET['install'])) {
             $table->string('ffmpeg_path')->default('/usr/local/bin/ffmpeg');
             $table->string('ffprobe_path')->default('/usr/local/bin/ffprobe');
             $table->string('webport')->default('8000');
-            $table->string('webip');
+            $table->string('webip')->nullable();
             $table->string('hlsfolder')->default('hl');
             $table->string('user_agent')->default('FOS-Streaming');
             $table->timestamps();
@@ -97,20 +97,20 @@ if( isset($_GET['install'])) {
 
         $db->schema()->create('streams', function ($table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('streamurl');
-            $table->string('streamurl2');
-            $table->string('streamurl3');
-            $table->tinyInteger('running');
-            $table->tinyInteger('status');
-            $table->integer('cat_id');
-            $table->integer('trans_id');
-            $table->integer('pid');
-            $table->tinyInteger('restream');
-            $table->string('video_codec_name');
-            $table->string('audio_codec_name');
-            $table->tinyInteger('bitstreamfilter');
-            $table->tinyInteger('checker');
+            $table->string('name')->nullable();
+            $table->string('streamurl')->nullable();
+            $table->string('streamurl2')->nullable();
+            $table->string('streamurl3')->nullable();
+            $table->tinyInteger('running')->nullable();
+            $table->tinyInteger('status')->nullable();
+            $table->integer('cat_id')->nullable();
+            $table->integer('trans_id')->nullable();
+            $table->integer('pid')->nullable();
+            $table->tinyInteger('restream')->nullable();
+            $table->string('video_codec_name')->nullable();
+            $table->string('audio_codec_name')->nullable();
+            $table->tinyInteger('bitstreamfilter')->nullable();
+            $table->tinyInteger('checker')->nullable();
             $table->timestamps();
         });
         echo "created streams table <br>" . PHP_EOL;
@@ -121,12 +121,12 @@ if( isset($_GET['install'])) {
         $db->schema()->create('users', function ($table) {
             $table->increments('id');
             $table->string('username')->unique();
-            $table->string('password');
-            $table->tinyInteger('active');
-            $table->string('lastconnected_ip');
-            $table->date('exp_date');
-            $table->integer('last_stream');
-            $table->string('useragent');
+            $table->string('password')->nullable();
+            $table->tinyInteger('active')->nullable();
+            $table->string('lastconnected_ip')->nullable();
+            $table->date('exp_date')->nullable();
+            $table->integer('last_stream')->nullable();
+            $table->string('useragent')->nullable();
             $table->integer('max_connections')->default('1');
             $table->timestamps();
         });
@@ -142,10 +142,10 @@ if( isset($_GET['install'])) {
             $table->increments('id');
             $table->string('name')->unique();
 
-            $table->BigInteger('probesize');
-            $table->BigInteger('analyzeduration');
-            $table->string('video_codec');
-            $table->string('audio_codec');
+            $table->BigInteger('probesize')->nullable();
+            $table->BigInteger('analyzeduration')->nullable();
+            $table->string('video_codec')->nullable();
+            $table->string('audio_codec')->nullable();
             $table->string('profile')->nullable();
             $table->string('preset_values')->nullable();
             $table->string('scale')->nullable();
@@ -190,18 +190,18 @@ if( isset($_GET['install'])) {
 
         $db->schema()->create('activity', function ($table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('stream_id');
-            $table->text('user_agent');
-            $table->string('user_ip');
-            $table->integer('pid');
+            $table->integer('user_id')->nullable();
+            $table->integer('stream_id')->nullable();
+            $table->text('user_agent')->nullable();
+            $table->string('user_ip')->nullable();
+            $table->integer('pid')->nullable();
             $table->integer('bandwidth')->default(0);
-            $table->dateTime('date_start');
-            $table->dateTime('date_end');
-            $table->index('user_id');
-            $table->index('stream_id');
-            $table->index('date_end');
-            $table->index('pid');
+            $table->dateTime('date_start')->nullable();
+            $table->dateTime('date_end')->nullable();
+            $table->index('user_id')->nullable();
+            $table->index('stream_id')->nullable();
+            $table->index('date_end')->nullable();
+            $table->index('pid')->nullable();
             $table->timestamps();
         });
 
@@ -214,7 +214,7 @@ if( isset($_GET['install'])) {
         $db->schema()->create('blocked_ips', function ($table) {
             $table->increments('id');
             $table->string('ip')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
 
@@ -226,7 +226,7 @@ if( isset($_GET['install'])) {
         $db->schema()->create('blocked_user_agents', function ($table) {
             $table->increments('id');
             $table->string('name', 255)->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
 
